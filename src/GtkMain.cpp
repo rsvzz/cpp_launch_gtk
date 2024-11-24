@@ -10,10 +10,10 @@ GtkMain::GtkMain(){
     this->set_decorated(false); //toolbar not visibility
     this->set_position(Gtk::WindowPosition::WIN_POS_CENTER_ALWAYS);
     Gtk::HeaderBar header;
-    header.set_title("Open C++/gtkmm-3.0");
+    //header.set_title("Open C++/gtkmm-3.0");
     header.set_show_close_button(false);
     this->set_titlebar(header);
-    
+
     txtResult =  new Gtk::TextView();
     txtResult->set_size_request(400,260);
     txtResult->set_sensitive(false);

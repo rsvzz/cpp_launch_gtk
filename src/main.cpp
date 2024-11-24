@@ -9,11 +9,30 @@
 
 int main (int argc, char* argv[]){
     /*
-    std::cout<<"This's a test"<<std::endl;
+    std::string path = "/usr/bin";
 
-    int rs = system("rofi -show run");
-    if(rs == 0){
-        std::cout<<"open"<<std::endl;
+    stack<PathItem> *files = new stack<PathItem>;
+    try {
+        for (const auto& entry : fs::directory_iterator(path)) {
+            //cout<<entry.path().filename().c_str()<<endl;
+            if(!entry.is_directory()){
+                PathItem item;
+                item.path = string(entry.path().c_str());
+                item.name = string(entry.path().filename().c_str());
+                item.extention = string(entry.path().extension().c_str());
+                files->push(item);
+
+            }
+        }
+    } catch (const fs::filesystem_error& err) {
+        std::cerr << "Error: " << err.what() << std::endl;
+    }
+
+    PathItemList obj(files);
+    auto nlist = obj.get_filter_by_c_str("al");
+    if(nlist != NULL){
+        auto app = nlist->top();
+        cout<<app.name<<" top --> "<<nlist->size()<<endl;
     }
     */
 

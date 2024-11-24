@@ -8,7 +8,7 @@ OBJ_MODEL_DIR = $(OBJ_MODEL)/PathBin.cpp
 CFLAGS = -Wall -g -I$(INC_MODEL)$(INC_GTK)
 all : 
 	@mkdir bin -p
-	g++-11 -std=c++17 -o bin/app $(OBJ_SRC_DIR) $(OBJ_MODEL_DIR)  `pkg-config --cflags --libs gtkmm-3.0` $(CFLAGS)
+	g++ -std=c++17 -o bin/app $(OBJ_SRC_DIR) $(OBJ_MODEL_DIR)  `pkg-config --cflags --libs gtkmm-3.0` $(CFLAGS)
 
 exe :
 	@./bin/app

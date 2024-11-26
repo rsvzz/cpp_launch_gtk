@@ -1,65 +1,27 @@
+#pragma once
+#include <filesystem>
 #include <iostream>
 #include <stack>
+using std::stack;
+using std::string;
+namespace fs = std::filesystem;
 
-struct PathItem
-{
-    /* data */
-    std::string name;
-    std::string path;
-    std::string extention;
+struct PathItem {
+  /* data */
+  string name;
+  string path;
+  string extention;
 };
 
-class PathItemList
-{
+class PathItemList {
 private:
-    /* data */
-    std::stack<PathItem> *items;
+  /* data */
+  std::string path;
+  stack<PathItem *> *files;
+  stack<PathItem*>* exec_by_filter(stack<PathItem*>*, string);
 public:
-    PathItemList(std::stack<PathItem>*);
-    ~PathItemList();
-
-    std::stack<PathItem>* get_filter_by_c_str(std::string);
-
+  PathItemList(const char *);
+  ~PathItemList();
+  stack<PathItem *> *get_filter_by_c_str(string);
+  stack<PathItem *> *get_filter_by_list(stack<PathItem *>*, string);
 };
-
-PathItemList::PathItemList(std::stack<PathItem>* data)
-{
-    items = data;
-}
-
-PathItemList::~PathItemList()
-{
-}
-
-std::stack<PathItem>* PathItemList::get_filter_by_c_str(std::string str){
-    std::stack<PathItem> *item =  new std::stack<PathItem>(*items);
-    std::stack<PathItem> *filtro = new std::stack<PathItem>;
-    while (!item->empty())
-    {
-        /* code */
-        auto info = item->top();
-        if(info.name.length() >= str.length())
-        {
-          std::string find = "";
-          for (size_t i = 0; i < info.name.length(); i++)
-          {
-              /* code */
-              if(find.length() < str.length()){
-                  //listando los caracteres requerios por el filtro
-                  find += info.name.at(i);
-              }
-              else{
-                  break;
-              }
-
-          }
-          if(str.compare(find.c_str()) == 0){
-              //std::cout<<"Entro >> "<<info.name<<std::endl;
-              filtro->push(info);
-          }
-      }
-      item->pop();
-    }
-
-    return filtro;
-}

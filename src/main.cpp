@@ -35,7 +35,6 @@ int main (int argc, char* argv[]){
         cout<<app.name<<" top --> "<<nlist->size()<<endl;
     }
     */
-
     auto app = Gtk::Application::create(argc, argv, "org.gtkmm.mywin");
     GtkMain mywin; 
     return app->run(mywin);

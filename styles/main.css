@@ -1,0 +1,29 @@
+.mywindow{
+    margin: 5px;
+    padding: 5px;
+
+}
+/*
+    la ruta del target
+*/
+#myEntry{
+    font-size: 16px;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #c72c06 ;
+    text-align: center;
+}
+
+#myEntry:focus{
+    border-radius: 10px;
+    border: 3px solid #f3e739 ;
+}
+
+.cv-lbl-view{
+    font-size: 14px;
+    margin: 3px;
+    padding: 2px;
+}
+
+

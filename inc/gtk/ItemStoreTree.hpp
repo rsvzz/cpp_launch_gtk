@@ -1,5 +1,5 @@
 #pragma once
-#include <glib-2.0>
+#include <glibmm-2.68/glibmm.h>
 #include <iostream>
 
 using std::string;
@@ -12,8 +12,8 @@ private:
     string name;
     string icon;
 public:
-    ItemStoreList();
-    ~ItemStoreList();
+    ItemStoreTree();
+    ~ItemStoreTree();
 
     string get_name_file();
     string get_icon_file();

@@ -31,8 +31,7 @@ PathItemList::~PathItemList() {
   delete files;
   files = nullptr;
 }
-stack<PathItem*> *PathItemList::exec_by_filter(stack<PathItem *> *list,
-                                                string str) {
+stack<PathItem*> *PathItemList::exec_by_filter(stack<PathItem *> *list,string str) {
   stack<PathItem *> *item = new stack<PathItem *>(*list);
   stack<PathItem*> *filtro = new stack<PathItem*>;
   while (!item->empty()) {
@@ -70,18 +69,54 @@ stack<PathItem*> *PathItemList::exec_by_filter(stack<PathItem *> *list,
 }
 
 void PathItemList::get_filter_by_c_str(string str) {
-  filter = new stack<PathItem*>;
-  filter = exec_by_filter(files, str);
+  if(str.length() == 1){
+    if(!get_first_key(str.c_str())){
+      key = const_cast<char*>(str.c_str());
+      //std::cout<<"asig :"<<str<<std::endl;
+      filter = nullptr;
+      filter = exec_by_filter(files, str);
+    }
+    else{
+      //std::cout<<str<<" -> la misma"<<std::endl;
+    }
+  }
+  else{
+      //std::cout<<str<<" -> mas letras"<<std::endl;
+  }
+   
 }
 bool PathItemList::get_filter_status(){
-  if(filter != nullptr){
+  if(filter != nullptr)
+    return false;
+    
+  if(filter->size() > 0){
     return true;
+  }
+
+  return false;
+}
+
+stack<PathItem *>* PathItemList::get_filter_by_list(string str) {
+  if(str.length() == 1){
+    return filter;
+  }
+  else{
+     //std::cout<<str<<" entro a filtrar :)"<<std::endl;
+     return exec_by_filter(filter, str);
+  }
+   
+}
+
+bool PathItemList::get_first_key(const char* _key){
+  if(key != nullptr){
+    if(*key == *_key)
+      return true;
+    else
+      return false;
   }
   return false;
 }
-stack<PathItem*>* PathItemList::get_filter_list(){
-  return filter;
-}
-stack<PathItem *>* PathItemList::get_filter_by_list(string str) {
-  return exec_by_filter(filter, str);
+
+void PathItemList::set_key_first(){
+  key = nullptr;
 }
